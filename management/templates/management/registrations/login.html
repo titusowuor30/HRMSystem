@@ -26,9 +26,9 @@
         <div class="row w-100 mt-5">
           <div class="col-lg-4 mx-auto">
             <div class="text-center mb-2">
-              <img src=" {% static 'hrms/images/human.png' %} " width="150px" alt="">
+              <img src=" {% static 'hrms/images/banner.jpg' %} " width="150px" alt="">
             </div>
-            <p class="display-4 mb-4 text-center text-white bg-info">Administrator Login</p>
+            <p class="display-4 mb-4 text-center text-white bg-info">User Login</p>
             <div class="auto-form-wrapper mb-5">
               <form action=" {% url 'management:login' %} " method ='POST'>
                 {% csrf_token %}

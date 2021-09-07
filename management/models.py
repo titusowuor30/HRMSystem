@@ -8,6 +8,8 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     thumb = models.ImageField(upload_to='media/user/',default='media/user/img.png')
 
+    REQUIRED_FIELDS = ['first_name','last_name','email']
+
 # Create your models here.
 class Department(models.Model):
     name = models.CharField(max_length=70, null=False, blank=False)
@@ -22,14 +24,11 @@ class Department(models.Model):
     
 
 class Employee(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='employees')
     LANGUAGE = (('english','ENGLISH'),('yoruba','YORUBA'),('hausa','HAUSA'),('french','FRENCH'))
     GENDER = (('male','MALE'), ('female', 'FEMALE'),('other', 'OTHER'))
     emp_id = models.CharField(max_length=70, default='emp'+str(random.randrange(100,999,1)))
-    thumb = models.ImageField(blank=True,null=True)
-    first_name = models.CharField(max_length=50, null=False)
-    last_name = models.CharField(max_length=50, null=False)
     mobile = models.CharField(max_length=15)
-    email = models.EmailField(max_length=125, null=False)
     address = models.TextField(max_length=100, default='')
     emergency = models.CharField(max_length=11)
     gender = models.CharField(choices=GENDER, max_length=10)
@@ -40,11 +39,11 @@ class Employee(models.Model):
     bank = models.CharField(max_length=25, default='First Bank Plc')
     salary = models.CharField(max_length=16,default='00,000.00')      
     def __str__(self):
-        return self.first_name
+        return self.user.first_name
         
     def get_absolute_url(self):
         return reverse("management:employee_view", kwargs={"pk": self.pk})
-    
+
 
 class Kin(models.Model):
     first_name = models.CharField(max_length=20)

@@ -48,19 +48,19 @@
                       {% for employee in employees  %}
                         <tr>
                           <td class="font-weight-medium">
-                            <img src="{{employee.thumb.url}}" class='rounded img-fluid' alt="">
+                            <img src="{{employee.user.thumb.url}}" class='rounded img-fluid' alt="">
                           </td>
                           <td>
-                            {{employee.first_name}}
+                            {{employee.user.first_name}}
                           </td>
                           <td>
-                            {{employee.last_name}}
+                            {{employee.user.last_name}}
                           </td>
                           <td>
                            {{employee.mobile}}
                           </td>
                           <td class="text-danger"> 
-                            {{employee.email}}
+                            {{employee.user.email}}
                           </td>
                           <td>
                           

@@ -22,7 +22,7 @@
 
                                     <div class="card border-top border-bottom border-success">
                                         <div class="card-body">
-                                            <img src="{{employee.thumb.url}}" alt="" class="img-fluid" width='200px' height='200px'>
+                                            <img src="{{employee.user.thumb.url}}" alt="" class="img-fluid" width='200px' height='200px'>
                                             <p class="lead mt-2 text-center"> 
                                             {{employee.emp_id | capfirst}} <br>
                                             <small class='text-center text-secondary'>( ID )</small>
@@ -40,11 +40,11 @@
                                         <table class="table">
                                         <tr>
                                             <th style="width:50%">First Name:</th>
-                                            <td>{{employee.first_name}}</td>
+                                            <td>{{employee.user.first_name}}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Name</th>
-                                            <td>{{employee.last_name}}</td>
+                                            <td>{{employee.user.last_name}}</td>
                                         </tr>
                                         <tr>
                                             <th>Mobile:</th>
@@ -52,7 +52,7 @@
                                         </tr>
                                         <tr>
                                             <th>Email:</th>
-                                            <td>{{employee.email}}</td>
+                                            <td>{{employee.user.email}}</td>
                                         </tr>
                                          <tr>
                                             <th>Gender:</th>
@@ -76,7 +76,7 @@
                                         </tr>
                                         <tr>
                                             <th>NUBAN:</th>
-                                            <td>{{employee.nuban}} </td>
+                                            <td>{{employee.account_no}} </td>
                                         </tr>
                                         <tr>
                                             <th>Bank:</th>

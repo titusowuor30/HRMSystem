@@ -21,11 +21,7 @@ class LoginForm(AuthenticationForm):
    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'********'}))
 
 class EmployeeForm (forms.ModelForm):
-    thumb = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-    first_name = forms.CharField(strip=True, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}))
-    last_name = forms.CharField(strip=True, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last Name'}))
     mobile = forms.CharField(strip=True, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Mobile Number'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Valid Email'}))
     emergency = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Relative Mobile Number'}))
     gender = forms.ChoiceField(choices=Employee.GENDER,widget=forms.Select(attrs={'class':'form-control'}))
     department = forms.ModelChoiceField(Department.objects.all(),required=True, empty_label='Select a department',widget=forms.Select(attrs={'class':'form-control'}))
@@ -33,7 +29,7 @@ class EmployeeForm (forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ('first_name', 'last_name', 'mobile','email','emergency','salary','gender','department','bank','account_no','language','thumb')
+        fields = ('user','mobile','emergency','salary','gender','department','bank','account_no','language')
         widgets={
             'salary':forms.TextInput(attrs={'class':'form-control'}),
             'bank':forms.TextInput(attrs={'class':'form-control'}),

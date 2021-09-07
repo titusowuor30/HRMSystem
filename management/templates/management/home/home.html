@@ -8,18 +8,16 @@
     <link rel="stylesheet" href=" {% static 'hrms/css/style.css'%} ">
     <style>
         .body-bg{
-           background: green;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #ef8e38, #108dc7);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, red, blue); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-        }
+           background: #3f729b;
+           background-image:url('banner.jpg');
+                 }
         .btn-orange{
-            background: #FDC830;  /* fallback for old browsers */
+            background:#00acee;
             background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to right, yellow, red); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
         .btn-selenium{
-            background: #0f0c29;  /* fallback for old browsers */
+            background:#00acee;
             background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to right, blue, red); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
@@ -30,12 +28,12 @@
 <body class='body-bg'>
     <section class="container">
         <nav class="navbar navbar-light bg-light mt-3 mb-2 ">
-            <h1 class="display-4 mt-2 text-right text-warning">  <a href=" {% url 'management:recruitment' %} " class="btn  btn-selenium text-light"> We are Hiring !!! </a>  &emsp; &emsp; &emsp; &emsp;  &emsp;<span style="color:red;"><b>TDBSOFT</b></span> Human Resource Management</h1>
+            <h1 class="display-4 mt-2 text-right text-warning">  <a href=" {% url 'management:recruitment' %} " class="btn  btn-selenium text-light"> Apply for internship/job</a>  &emsp; &emsp; &emsp; &emsp;  &emsp;<span style="color:red;"><b>TDBSOFT</b></span> Human Resource Management</h1>
         </nav>
         
         <div class="row">
             <div class="col-lg-6">
-                <img src="{% static 'hrms/images/human.png' %}" class='img-fluid' alt="">
+                <img src="{% static 'hrms/images/banner.jpg' %}" class='img-fluid' alt="">
             </div>
             <div class="col-lg-6">
                 <div class="card mb-3 shadow">
@@ -45,7 +43,9 @@
 
                     <div class="card-body">
                         <p class="lead text-justify">
-                            The Human resource management is the strategic approach to the effective management of people in a company or organization such that they help their business gain a competitive advantage. It is designed to maximize employee performance in service of an employer's strategic objectives. 
+                          TDBSoft is an upcoming software company founded by Titus Owuor,a Pre-Final Year IT Student at Maseno University.
+                            <br>It majorly deals in software development,video editing,photo editing,freelancing and so on.Contact us for quality work <b><a
+                                href="mailto:infotdbsoft@gmail.com">infotdbsoft@gmail.com</a> OR CALL:<a href="https://wa.me/+254743793901">+254743793901</a></b>
                         </p><hr>
                         <p class="lead text-justify">TDBSOFT Human Resource Management MIS</p>
                         <a href=" {% url 'management:login' %} " class="btn btn-block btn-selenium text-light"> Administrator &rarr; </a>
@@ -55,7 +55,7 @@
         </div>
     </section>
     
-    <nav class="navbar navbar-light bg-light ">
+    <nav class="navbar navbar-light bg-light " style="background:#F0acee;">
         <p class="display-4 mx-auto bg-light">MADE WITH 💖❤ BY TDBSOFT</p>
     </nav>
 </body>

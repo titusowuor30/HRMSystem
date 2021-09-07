@@ -13,7 +13,7 @@
                            <h4 class="text-center text-primary"><i class="fa fa-plus">&emsp; Next of Kin Info. </i></h4><hr>
                            <div class="alert alert-warning" role="alert">
                                 <p class="lead">Note: Only employees with no next of kin are displayed</p>
-                                <p class="lead text-center">Kindly Choose: <strong> '{{emp.first_name |upper}}'</strong> in the Employee's Box</p>
+                                <p class="lead text-center">Kindly Choose: <strong> '{{emp.user.first_name |upper}}'</strong> in the Employee's Box</p>
                                 </div>
                                 <form  class="form-group" method="POST">
                                     {% csrf_token %}
