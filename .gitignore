@@ -1,0 +1,10 @@
+/starad
+/HRMSPROJECT/__pycache__
+*.log
+*.pot
+*.pyc
+*.env
+.env
+__pycache__/
+local_settings.py
+db.sqlite3
