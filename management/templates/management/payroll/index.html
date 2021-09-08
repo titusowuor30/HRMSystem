@@ -47,17 +47,17 @@
                       {% for emp in emps %}
                         <tr>
                           <td class="font-weight-medium">
-                            <img src="{{emp.thumb.url}}" class='img-fluid rounded-circle' alt="">
+                            <img src="{{emp.user.thumb.url}}" class='img-fluid rounded-circle' alt="">
                           </td>
                           <td>
-                            {{emp.first_name}}
+                            {{emp.user.first_name}}
                           </td>
                           <td>
-                            {{emp.last_name}}
+                            {{emp.user.last_name}}
                           </td>
                           
                            <td>
-                            {{emp.nuban}}
+                            {{emp.account_no}}
                           </td>
                           <td>
                             {{emp.bank}}
@@ -66,7 +66,7 @@
                             {{emp.salary}}
                           </td>
                            <td>
-                            <button  type='button' onclick="payWithPaystack('{{emp.salary}}','{{emp.nuban}}','{{emp.bank}}')"  class="btn btn-info">  Pay</button>
+                            <button  type='button' onclick="payWithPaystack('{{emp.salary}}','{{emp.account_no}}','{{emp.bank}}')"  class="btn btn-info">  Pay</button>
                           </td>
                         </tr>
                       {% endfor %}                   

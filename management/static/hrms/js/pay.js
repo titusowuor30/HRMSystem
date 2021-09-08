@@ -1,11 +1,11 @@
 
-function payWithPaystack(salary,nuban,bank) {
+function payWithPaystack(salary,account_no,bank) {
     Swal.fire({
         title: '<strong>Transaction Successful</strong>',
         type: 'success',
         html:
           'The sum of #' +salary +
-          ' has been deposited into the Account Number '+nuban +
+          ' has been deposited into the Account Number '+account_no+
           ' at '+bank,
         showCloseButton: true,
         showCancelButton: false,
@@ -18,5 +18,5 @@ function payWithPaystack(salary,nuban,bank) {
       })
       setTimeout(()=>{
           window.location.href='/dashboard'
-      }, 3000)
+      }, 6000)
 }
