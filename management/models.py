@@ -27,7 +27,7 @@ class Employee(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='employees')
     LANGUAGE = (('english','ENGLISH'),('yoruba','YORUBA'),('hausa','HAUSA'),('french','FRENCH'))
     GENDER = (('male','MALE'), ('female', 'FEMALE'),('other', 'OTHER'))
-    emp_id = models.CharField(max_length=70, default='emp'+str(random.randrange(100,999,1)))
+    emp_id = models.CharField(max_length=70, default='emp'+str(random.randrange(100,999999,1)))
     mobile = models.CharField(max_length=15)
     address = models.TextField(max_length=100, default='')
     emergency = models.CharField(max_length=11)
@@ -37,12 +37,65 @@ class Employee(models.Model):
     language = models.CharField(choices=LANGUAGE, max_length=10, default='english')
     account_no = models.CharField(max_length=10, default='0123456789')
     bank = models.CharField(max_length=25, default='First Bank Plc')
-    salary = models.CharField(max_length=16,default='00,000.00')      
+    salary = models.DecimalField(max_digits=8,decimal_places=2,default=0.00)
     def __str__(self):
         return self.user.first_name
         
     def get_absolute_url(self):
         return reverse("management:employee_view", kwargs={"pk": self.pk})
+
+            
+class Deductions(models.Model):
+        description=models.CharField(max_length=100,default='PAYE')
+        type=models.CharField(max_length=20,default='deduction',choices=(('income','income'),('deduction','deduction')))
+        amount=models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
+        
+        def __str__(self):
+            return self.description
+        
+        @property
+        def get_total_deductions(self):
+            list=[]
+            for i in range(self.amount.count()):
+                t_deductions=self.amount
+                list.append(t_deductions)
+            return sum(list)
+
+        class Meta:
+            verbose_name_plural='Income Setup'
+        
+class Cashadvance(models.Model):
+        employee=models.ForeignKey('Employee',on_delete=models.CASCADE,related_name='advance',blank=True,null=True)
+        date=models.DateTimeField(auto_now_add=True)
+        amount=models.DecimalField(max_digits=8,decimal_places=2,default=0.00)
+
+        def __str__(self):
+            return f'{self.amount}'
+
+
+class GenPayrol(models.Model):
+    employee=models.ForeignKey('Employee',on_delete=models.CASCADE,related_name='payroll')
+    deductions=models.ManyToManyField('Deductions',related_name='payroll')
+    advance=models.ForeignKey('Cashadvance',on_delete=models.CASCADE,related_name='payroll',blank=True,null=True)
+
+    def __str__(self):
+        return self.employee.user.first_name
+
+    @property
+    def total_deductions(self):
+        queryset = self.deductions.all().filter(type='deduction').aggregate(totalDeductions=models.Sum('amount'))
+        return queryset["totalDeductions"]
+    
+    @property
+    def total_incomes(self):
+        queryset = self.deductions.all().filter(type='income').aggregate(totalDeductions=models.Sum('amount'))
+        return queryset["totalDeductions"]
+
+    @property
+    def getNetSalary(self):
+        return ((self.employee.salary + self.total_incomes)-(self.advance.amount + self.total_deductions))
+
+
 
 
 class Kin(models.Model):

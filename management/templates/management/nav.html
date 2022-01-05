@@ -1,8 +1,11 @@
 {% load static %}
-<nav class="navbar default-layout bg-success col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center bg-dark">
-        <p class="display-4 mt-3 text-success">TDBSoft-HRMS</p>
+<nav class="navbar default-layout bg-success col-lg-12 col-12 fixed-top d-flex flex-row">
+    <div class="text-left navbar-brand-wrapper d-flex align-items-top justify-content-center bg-dark rounded-left">
+        <figure class="display-6 m-auto">
+            <img class="mr-4 pr-4" src="{% static 'hrms/images/gmlogo.jpg' %}" alt="logo" width="100%" height="62px"
+                 style="border-radius:10%;">
+        </figure>
+        <h3 class="m-auto text-center text-white pl-5">JV HRM</h3>
         <a class="navbar-brand brand-logo-mini" href="{% url 'management:dashboard' %}">
             {% if user.thumb %}
             <img src="{{user.thumb.url}}"/>
@@ -12,8 +15,13 @@
         </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center bg-dark">
-
         <ul class="navbar-nav navbar-nav-right">
+            <h3 class="my-4 text-success pr-4">
+                <marquee>
+                    <span class="text-danger text-left">Gokhan </span>& <span class="text-primary">Masterspace</span>
+                    Joint Ventures Ltd
+                </marquee>
+            </h3>
             <li class="nav-item dropdown d-none d-xl-inline-block">
 
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"

@@ -1,0 +1,41 @@
+{% extends 'management/layout.html' %} {% load static %}
+{% block title %} Staff Deductions | TDBSoft-HRMS {% endblock title %}
+<!--  MAIN BODY START HERE -->
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+          Deductions
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i>Home></a></li>
+          <li class="active">Deductions</li>
+        </ol>
+      </section>
+      <section class="content">
+        <table id="example1" class="table table-bordered">
+            <thead>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Tools</th>
+            </thead>
+            <tbody>
+            </tbody>
+            {% for deduction in deductions %}
+            <tr>
+             <td>{{deduction.description}}</td>
+             <td>{{deduction.amount}}</td>
+             <td class="">
+               <a href="#" class="btn btn-primary"><i class="fa fa-edit text-primary"></i>Edit</a>
+               <form class="d-inline">
+                 <a href="#" class="btn btn-danger"><i class="fa fa-fa-trash text-danger"></i>Delete</a>
+               </form>
+             </td>
+            </tr>
+            {% endfor %}
+        </table>
+      </section>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'management/layout.html' %} {% load static %}
+{% block title %} Staff Deductions | TDBSoft-HRMS {% endblock title %}
+<!--  MAIN BODY START HERE -->
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+          Cash Advance
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-dashboard"></i>Home></a></li>
+          <li class="active">Avance</li>
+        </ol>
+      </section>
+      <section class="content">
+        <div class="box-header with-border">
+            <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+          </div>
+        <table id="example1" class="table table-bordered">
+            <thead>
+                <th>Date</th>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Tools</th>
+            </thead>
+            <tbody>
+            </tbody>
+            {% for advance in advances %}
+            <tr>
+             <td>{{advance.date}}</td>
+             <td>{{advance.employee.emp_id}}</td>
+             <td>{{advance.employee.user.first_name}} - {{advance.employee.user.last_name}}</td>
+             <td>{{advance.amount}}</td>
+             <td class="">
+                <a href="#" class="btn btn-primary"><i class="fa fa-edit text-primary"></i>Edit</a>
+                <form class="d-inline">
+                  <a href="#" class="btn btn-danger"><i class="fa fa-fa-trash text-danger"></i>Delete</a>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+        </table>
+      </section>
+</div>
+</div>
+</div>
+{% endblock %}

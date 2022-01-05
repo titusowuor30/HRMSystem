@@ -1,41 +1,66 @@
 {% extends 'management/layout.html' %}
 {% load static %}
+
+{{ form.media }}
 {% block title %} Staff Payroll | TDBSoft-HRMS {% endblock title %}
       <!--  MAIN BODY START HERE -->
-          {% block content %}
-
-            <div class="main-panel">
+    {% block content %}
+        <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
            <p class="lead text-center">Staffers Payroll System</p>
             <div class="col-lg-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                 
                   <div class="table-responsive">
+                    <section class="content">
+                      <div class="box-header with-border">
+                        <div class="row">
+                          <div class="col">
+                            <form action="#" class="ws-validate">
+                              <div class="form-row p-2">
+                                  <!-- max of the first date equals value of the second --> <!-- mmin of the second date equals value of the first --> 
+                                  <h5 class="text-behance align-content-center mt-1">From:</h5><input data-dependent-validation='{"from": "date-to", "prop": "max"}' type="date" id="date-from" placeholder="from" /> 
+                                  <h5 class="text-behance align-content-center mt-1">To:</h5><input data-dependent-validation='{"from": "date-from", "prop": "min"}' type="date" id="date-to" placeholder="to" /> 
+                                  <i class="ml-2 fa fa-search"><input type="submit" value="Search" class="btn btn-dribbble fa fa-search" /></i>
+                              </div>
+                          </form>
+                          </div>
+                          <div class="col-lg-1">
+                            <button class="btn btn-primary"><i class="fa fa-print"></i>Payroll</button>
+                          </div>
+                        </div>                      
+                      </div>
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          
                           <th>
-                            Image
+                           ID
                           </th>
                           <th>
-                            First name
+                            Name
                           </th>
                           <th>
-                            Last name
+                            A/C No
                           </th>
                           <th>
-                            Account Number
+                            Bank
                           </th>
                           <th>
-                            Bank Name
+                           Gross Salary
                           </th>
                           <th>
-                            Salary
+                            Deductions
                           </th>
-
+                          <th>
+                            Cash Advance
+                          </th>
+                          <th>
+                            Allowances
+                          </th>
+                          <th>
+                            Net Salary
+                          </th>
                            <th>
                             Action
                           </th>
@@ -46,32 +71,33 @@
 
                       {% for emp in emps %}
                         <tr>
-                          <td class="font-weight-medium">
-                            <img src="{{emp.user.thumb.url}}" class='img-fluid rounded-circle' alt="">
-                          </td>
+                          <td class="font-weight-medium">{{emp.employee.emp_id}}</td>
                           <td>
-                            {{emp.user.first_name}}
-                          </td>
-                          <td>
-                            {{emp.user.last_name}}
-                          </td>
-                          
-                           <td>
-                            {{emp.account_no}}
-                          </td>
-                          <td>
-                            {{emp.bank}}
+                            {{emp.employee.user.first_name}}- {{emp.employee.user.last_name}}
                           </td>
                            <td>
-                            {{emp.salary}}
+                            {{emp.employee.account_no}}
+                          </td>
+                          <td>
+                            {{emp.employee.bank}}
                           </td>
                            <td>
-                            <button  type='button' onclick="payWithPaystack('{{emp.salary}}','{{emp.account_no}}','{{emp.bank}}')"  class="btn btn-info">  Pay</button>
+                            {{emp.employee.salary}}
+                          </td>
+                          <td>{{emp.total_deductions}}</td>
+                          <td>{{emp.advance.amount}}</td>
+                          <td>{{emp.total_incomes}}</td>
+                          <td>
+                           {{emp.getNetSalary}}
+                          </td>
+                           <td>
+                            <button  type='button' onclick="payWithPaystack('{{emp.salary}}','{{emp.account_no}}','{{emp.bank}}')"  class="btn btn-info">Pay slip</button>
                           </td>
                         </tr>
                       {% endfor %}                   
                       </tbody>
                     </table>
+                  </section>
                   </div>
                 </div>
               </div>
@@ -85,4 +111,17 @@
           </div>
           
         </div>
+        {% block extra_scripts %}
+        <script>
+          //date range
+          $(function() {
+            $('input[name="daterange"]').daterangepicker({
+              opens: 'left'
+            }, function(start, end, label) {
+              console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+          });
+          </script>
+        {% endblock extra_scripts %}
         {% endblock content %}
+        

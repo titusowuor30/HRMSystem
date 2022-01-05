@@ -4,12 +4,12 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="{{user.thumb.url}}">
+                  <img src="{{user.thumb.url}}" width="90%" style="border-radius:50%;">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name">{{user.username | upper}} </p>
                   <div>
-                    <small class="designation text-muted">Administrator</small>
+                    <small class="designation text-muted">online</small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
@@ -26,12 +26,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'management:employee_all' %}" aria-expanded="false" aria-controls="ui-basic">
-              <i class="fa fa-user text-dark"></i>
-              <span class="menu-title">&emsp;Employee</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'management:attendance_new' %}">
               <i class="fa fa-calendar"></i>
               <span class="menu-title">&emsp;Attendance</span>
@@ -43,7 +37,6 @@
               <span class="menu-title">&emsp;Leave</span>
             </a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="fa fa-folder "></i>
@@ -64,15 +57,35 @@
               </ul>
             </div>
           </li>
-
-
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-employees" aria-expanded="false" aria-controls="ui-employees">
+              <i class="fa fa-user text-dark"></i>
+              <span class="menu-title">&emsp;Employees</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-employees">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'management:employee_all' %}">Employee List</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'management:advance' %}">Cash Advance</a>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'management:recruitmentall' %}">
               <i class="fa fa-database"></i>
               <span class="menu-title">&emsp;Recruitment</span>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'management:deductions' %}">
+              <i class="fa fa-usd"></i>
+              <span class="menu-title">&emsp;Deductions</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'management:payroll' %}">
               <i class="fa fa-usd"></i>

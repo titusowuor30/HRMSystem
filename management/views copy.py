@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.shortcuts import render,redirect, resolve_url,reverse, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
@@ -175,6 +174,7 @@ class Attendance_Out(LoginRequiredMixin,View):
     login_url = 'management:dashboard'
 
     def get(self, request,*args, **kwargs):
+
        user=Attendance.objects.get(Q(staff__id=self.kwargs['pk']) & Q(status='PRESENT')& Q(date=timezone.localdate()))
        user.last_out=timezone.localtime()
        queryset=GenPayrol.objects.filter(employee__id=self.kwargs['pk'])
@@ -184,7 +184,7 @@ class Attendance_Out(LoginRequiredMixin,View):
           adduserPayroll=GenPayrol()
           adduserPayroll.employee=this_employee
           if not this_advance.exists():
-              emp_advance=Cashadvance(employee=this_employee,date=timezone.datetime.now(),amount=0.00)
+              emp_advance=Cashadvance(employee=this_advance,date=timezone.datetime.now(),amount=0.00)
               emp_advance.save()
               adduserPayroll.advance=emp_advance
           else:

@@ -33,7 +33,7 @@ class EmployeeForm (forms.ModelForm):
         widgets={
             'salary':forms.TextInput(attrs={'class':'form-control'}),
             'bank':forms.TextInput(attrs={'class':'form-control'}),
-            'account_no':forms.TextInput(attrs={'class':'form-control'})
+            'account_no':forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class KinForm(forms.ModelForm):

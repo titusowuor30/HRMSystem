@@ -39,6 +39,8 @@ urlpatterns = [
     path("recruitment/<int:pk>/delete/", views.RecruitmentDelete.as_view(), name="recruitmentdelete"),
 
 #Payroll
-    path("employee/pay/",views.Pay.as_view(), name="payroll")
+    path("employee/deductions/",views.deductions, name="deductions"),
+     path("employee/advance/",views.advance, name="advance"),
+    path("employee/pay/",views.Pay.as_view(), name="payroll"),
 
 ]

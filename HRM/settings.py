@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'management',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'bootstrap_datepicker_plus',
+    'bootstrap4',
+    'bootstrap_modal_forms',
+    'chartjs',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +91,6 @@ WSGI_APPLICATION = 'HRM.wsgi.application'
             'NAME': BASE_DIR / 'db.sqlite3',
         }
 }"""
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -145,6 +148,7 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
+#STATICFILES_DIRS=os.path.join(BASE_DIR,'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 LOGIN_REDIRECT_URL = 'management:dashboard'
 #LOGIN_URL = 'management:login'
