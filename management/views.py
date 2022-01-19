@@ -173,18 +173,20 @@ class Attendance_New (LoginRequiredMixin,CreateView):
 
 class Attendance_Out(LoginRequiredMixin,View):
     login_url = 'management:dashboard'
+    #print("Current month:"+str(datetime.now().month()))
 
     def get(self, request,*args, **kwargs):
+
        user=Attendance.objects.get(Q(staff__id=self.kwargs['pk']) & Q(status='PRESENT')& Q(date=timezone.localdate()))
        user.last_out=timezone.localtime()
        queryset=GenPayrol.objects.filter(employee__id=self.kwargs['pk'])
        this_employee=Employee.objects.get(Q(id=self.kwargs['pk']))
        this_advance=Cashadvance.objects.filter(Q(employee__id=self.kwargs['pk']))
-       if len(queryset) <1:
+       if not queryset.exists():
           adduserPayroll=GenPayrol()
           adduserPayroll.employee=this_employee
           if not this_advance.exists():
-              emp_advance=Cashadvance(employee=this_employee,date=timezone.datetime.now(),amount=0.00)
+              emp_advance=Cashadvance(employee=this_advance,date=timezone.datetime.now(),amount=0.00)
               emp_advance.save()
               adduserPayroll.advance=emp_advance
           else:
@@ -194,6 +196,25 @@ class Attendance_Out(LoginRequiredMixin,View):
           for deduction in Deductions.objects.all():
               adduserPayroll.deductions.add(deduction)
           print("user payroll=>"+str(adduserPayroll))
+          print(queryset.exists())
+       elif queryset.exists() and str(queryset.date.month()) == str(datetime.now().month()):
+          adduserPayroll=GenPayrol()
+          adduserPayroll.employee=this_employee
+          if not this_advance.exists():
+              emp_advance=Cashadvance(employee=this_advance,date=timezone.datetime.now(),amount=0.00)
+              emp_advance.save()
+              adduserPayroll.advance=emp_advance
+          else:
+              emp_advance=Cashadvance.objects.get(employee__id=self.kwargs['pk'])
+              adduserPayroll.advance=emp_advance 
+          adduserPayroll.save()
+          for deduction in Deductions.objects.all():
+              adduserPayroll.deductions.add(deduction)
+          print("new month user payroll=>"+str(adduserPayroll))
+          print(queryset)
+       else:
+            print('Sorry! It\'s not a new month yet!')
+            messages.warning(self.request,'Sorry! It\'s not a new month yet!')  
        #checkout user
        user.save()   
        return redirect('management:attendance_new')

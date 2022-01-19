@@ -267,7 +267,9 @@ CREATE TABLE `management_department` (
 --
 
 INSERT INTO `management_department` (`id`, `name`, `history`) VALUES
-(1, 'hr', 'No History');
+(1, 'Accounting', 'No History');
+(2, 'ICT', 'No History');
+(3, 'General', 'No History');
 
 -- --------------------------------------------------------
 

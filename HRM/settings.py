@@ -15,7 +15,6 @@ import os
 # import dj_database_url
 
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -84,7 +83,7 @@ WSGI_APPLICATION = 'HRM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#Development
+# Development
 """DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -95,19 +94,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'management',
-        'HOST':'127.0.0.1',
-        'USER':'root',
-        'PASSWORD':'',
-        'PORT':'3306',
+        'HOST': '127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': 'SuperAdmin',
+        'PORT': '3306',
     }
 }
 
 AUTH_USER_MODEL = 'management.User'
-#Production
+# Production
 
 
-
-#this will update settings datbase configuration automatically from heroku and let us local config also
+# this will update settings datbase configuration automatically from heroku and let us local config also
 
 
 # Password validation
@@ -148,11 +146,12 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-#STATICFILES_DIRS=os.path.join(BASE_DIR,'staticfiles')
+# STATICFILES_DIRS=os.path.join(BASE_DIR,'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 LOGIN_REDIRECT_URL = 'management:dashboard'
 #LOGIN_URL = 'management:login'
-MEDIA_URL = '/media/' #This is just for url i.e https://l.me/media/l.jpg
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #This is the folder the image will be uploaded
+MEDIA_URL = '/media/'  # This is just for url i.e https://l.me/media/l.jpg
+# This is the folder the image will be uploaded
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # django_heroku.settings(locals())

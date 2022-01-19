@@ -2,4 +2,5 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 admin.site.register(User)
-admin.site.register([Employee,Department,Attendance,Kin,Cashadvance,Deductions,GenPayrol])
+admin.site.register([Employee, Attendance, Kin,
+                    Cashadvance, Deductions, GenPayrol, Leave])
